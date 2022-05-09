@@ -26,9 +26,9 @@
 
   **//The core features of your MVP//**
 
-  * User can search bike stations by city (‘network’)
-  * Will showcase number of available bikes and empty slots
-  * Location (latitude/longitude) and name
+    * User can search bike stations by city (‘network’)
+    * Will showcase number of available bikes and empty slots
+    * Location (latitude/longitude) and name
 
   **//The API data you’ll be using and how you’ll use it//**
 
