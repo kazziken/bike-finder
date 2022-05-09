@@ -32,7 +32,7 @@
 
   **//The API data you’ll be using and how you’ll use it//**
 
-  * [CityBike] (https://api.citybik.es/v2/networks)
+    * [CityBike] (https://api.citybik.es/v2/networks)
   
   **//Challenges you expect to face//**
 
