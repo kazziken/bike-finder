@@ -1,4 +1,5 @@
 **//Planning//**
+
 Plan out your features
     Search bar for city location
     Show locations by city after clicking on city name
@@ -10,6 +11,7 @@ Plan out the structure of your JSON requests
     Building fetch function, returning data
 
 **//Project Pitches//**
+
 Before you start working on your project, you’ll pitch your project idea to your instructors for approval and feedback.
 
 For your project pitch, you should include:
