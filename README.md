@@ -19,7 +19,6 @@
 
 ## Project Pitches
 
-**//For your project pitch, you should include://**
   **//The basic story of your application//**
 
       * Cyclists around the world look for sustainable and affordable modes of transportation during their travels
@@ -33,7 +32,7 @@
 
   **//The API data you’ll be using and how you’ll use it//**
 
-      * https://api.citybik.es/v2/networks
+      https://api.citybik.es/v2/networks
   
   **//Challenges you expect to face//**
 
