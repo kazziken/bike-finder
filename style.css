@@ -2,6 +2,12 @@ body {
   background: rgb(180, 215, 233);
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
 
 
 
