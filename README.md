@@ -1,7 +1,4 @@
-beginning of bike-finder app
-
-
-<!-- **//Planning -->
+**//Planning//**
 Plan out your features
     Search bar for city location
     Show locations by city after clicking on city name
@@ -12,7 +9,7 @@ Develop user stories
 Plan out the structure of your JSON requests
     Building fetch function, returning data
 
-<!-- **//Project Pitches -->
+**//Project Pitches//**
 Before you start working on your project, you’ll pitch your project idea to your instructors for approval and feedback.
 
 For your project pitch, you should include:
@@ -28,5 +25,5 @@ For your project pitch, you should include:
   The API data you’ll be using and how you’ll use it
       https://api.citybik.es/v2/networks
   
-  Challenges you expect to face\
+  Challenges you expect to face
       Building event listeners, grabbing the correct data value from the api
