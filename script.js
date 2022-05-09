@@ -6,3 +6,6 @@ document.querySelector("body").appendChild(h2);
 fetch('https://api.citybik.es/v2/networks')
   .then (res => res.json())
   .then (data => console.log(data))
+
+
+console.log('hello')
