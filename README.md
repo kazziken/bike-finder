@@ -25,12 +25,12 @@
       Need to find locations with available bikes for use
 
   **//The core features of your MVP//**
-      User can search bike stations by city (‘network’)
-      Will showcase number of available bikes and empty slots
-      Location (latitude/longitude) and name
+      * User can search bike stations by city (‘network’)
+      * Will showcase number of available bikes and empty slots
+      * Location (latitude/longitude) and name
 
   **//The API data you’ll be using and how you’ll use it//**
-      https://api.citybik.es/v2/networks
+      * https://api.citybik.es/v2/networks
   
   **//Challenges you expect to face//**
-      Building event listeners, grabbing the correct data value from the api
+      * Building event listeners, grabbing the correct data value from the api
