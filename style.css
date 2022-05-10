@@ -21,9 +21,10 @@ end here */
 }
 
 #footer{
-  position:fixed;
+  position:auto;
   bottom:0;
   left:0;
+  background-color: whitesmoke;
  }
 
 
@@ -38,18 +39,16 @@ end here */
 }
 
 .container {
-  /* width: 95%;
-  height: 50%;
   position: relative;
-  margin: 0 auto; */
-  width: 1000px;
-  height: 2400px;
+  margin: 0 auto;
+  width: auto;
+  height: auto;
   border: black;
-  background-color: transparent;
+  background-color: lightyellow;
   list-style: none;
-  column-count: 4;
-  -moz-column-count: 4;
-  -webkit-column-count: 4;
+  column-count: 5;
+  -moz-column-count: 5;
+  -webkit-column-count: 5;
   /* text-align: left;
   float: left;
   min-width: 696px;
