@@ -10,13 +10,14 @@ body {
   --color-fg-default: #c9d1d9;
   --color-canvas-default: #0d1117;
 end here */
-}
+
+
 
 .center {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 95%;
+  width: 85%;
 }
 
 #footer{
@@ -27,7 +28,7 @@ end here */
 
 
  form {
-  background-color: #4654e1;
+  background-color: whitesmoke;
   width: 300px;
   height: 44px;
   border-radius: 5px;
