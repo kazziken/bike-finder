@@ -1,4 +1,3 @@
-
 let cityUl = document.querySelector('#city-Ul')
 const searchSubmit = document.querySelector ('#form')
 
@@ -13,8 +12,10 @@ fetch('https://api.citybik.es/v2/networks')
 function renderCities (network) {
   cityName = document.createElement('li')
   // cityName.sort()
-  cityUl.append(cityName)
   cityName.innerHTML = network.location.city
+  cityName.classList = 'list'
+  cityUl.append(cityName)
+  // cityName.addEventListener()
 }
   
 searchSubmit.addEventListener('submit', (e) => {

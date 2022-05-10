@@ -10,7 +10,7 @@ body {
   --color-fg-default: #c9d1d9;
   --color-canvas-default: #0d1117;
 end here */
-
+}
 
 
 .center {
@@ -29,10 +29,38 @@ end here */
 
  form {
   background-color: whitesmoke;
-  width: 300px;
+  width: 0px;
   height: 44px;
   border-radius: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.container {
+  /* width: 95%;
+  height: 50%;
+  position: relative;
+  margin: 0 auto; */
+  width: 1000px;
+  height: 2400px;
+  border: black;
+  background-color: transparent;
+  list-style: none;
+  column-count: 4;
+  -moz-column-count: 4;
+  -webkit-column-count: 4;
+  /* text-align: left;
+  float: left;
+  min-width: 696px;
+  list-style: none;
+  padding-top: 20px;
+  display: inline; */
+}
+
+
+.list {
+  display: block;
+  text-align: left;
+  padding: 10px 3;
 }
