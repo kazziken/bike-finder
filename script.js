@@ -1,5 +1,8 @@
 let cityUl = document.querySelector('#city-Ul')
 const searchSubmit = document.querySelector ('#form')
+const body = document.querySelector('body')
+body.id = 'body'
+const station
 
 //fetch request from citybikes api server
 fetch('https://api.citybik.es/v2/networks')
@@ -15,9 +18,48 @@ function renderCities (network) {
   cityName.innerHTML = network.location.city
   cityName.classList = 'list'
   cityUl.append(cityName)
-  // cityName.addEventListener()
+  cityName.addEventListener('click', () => renderNetwork(network))
 }
   
+function renderNetwork(network) {
+  let child = cityUl.lastElementChild
+    while (child) {
+    cityUl.removeChild(child)
+    child = cityUl.lastElementChild
+  }
+  cityName = document.createElement('li')
+  cityName.innerHTML = network.location.city
+  cityName.classList = 'list'
+  cityUl.append(cityName)
+
+  fetch (`https://api.citybik.es/v2/networks/${network.id}`)
+    .then(res => res.json())
+    .then(network => renderStations(network))
+  }
+
+function renderStations(network) {
+  let stationInfo = document.createElement('ul')
+  cityUl.append(stationInfo)
+  
+  let networkName = document.createElement('h3')
+  networkName.innerHTML = network["network"].name
+  
+  let destinationStation = network['network'].stations
+  for(station of destinationStation) {
+    let stationName = document.createElement('li')
+    stationName.innerHTML = station.name
+    let emptySlots = document.createElement('li')
+    emptySlots.innerHTML = `Empty Slots: ${station.empty_slots}`
+    let availableBikes = document.createElement('li')
+    availableBikes.innerHTML = `Available Bikes: ${station.free_bikes}`
+    // let acceptedPayment = document.createElement('li')
+    // acceptedPayment.innerHTML = station.extra.payment
+
+    stationInfo.append(networkName, stationName, emptySlots, availableBikes)
+  }
+
+}
+
 searchSubmit.addEventListener('submit', (e) => {
   e.preventDefault()
   console.log('this is in search')

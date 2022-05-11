@@ -21,7 +21,7 @@ end here */
 }
 
 #footer{
-  position:auto;
+  position: fixed;
   bottom:0;
   left:0;
   background-color: whitesmoke;
@@ -38,6 +38,49 @@ end here */
   align-items: center;
 }
 
+.column1 {
+  float: left;
+  align-items: center;
+  position: auto;
+  background-color: white;
+  width: 30%;
+  padding: 3px;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto; /* Should be removed. Only for demonstration */
+}
+.column2 {
+  float: left;
+  background-color: lightgrey;
+  align-items: center;
+  position: auto;
+  width: 30%;
+  padding: 3px;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto; /* Should be removed. Only for demonstration */
+}
+.column3 {
+  float: left;
+  background-color: lightslategrey;
+  align-items: center;
+  position: auto;
+  width: 30%;
+  padding: 3px;
+  height: auto; /* Should be removed. Only for demonstration */
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  align-items: center;
+  clear: both;
+}
+@media (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
 .container {
   position: relative;
   margin: 0 auto;
