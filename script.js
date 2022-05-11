@@ -1,24 +1,24 @@
 let cityUl = document.querySelector('#city-Ul')
 const searchSubmit = document.querySelector ('#form')
+// const refresh = document.querySelector('#refresh')
 const body = document.querySelector('body')
-body.id = 'body'
 
-//fetch request from citybikes api server
 fetch('https://api.citybik.es/v2/networks')
-.then (res => res.json())
-.then (data => {
-  let networkData = data["networks"]
-  networkData.forEach (network => renderCities(network))
-})
+  .then (res => res.json())
+  .then (data => {
+    let networkData = data["networks"]
+    networkData.forEach (network => renderCities(network))
+  })
 
 function renderCities (network) {
   cityName = document.createElement('li')
-  // cityName.sort()
   cityName.innerHTML = network.location.city
   cityName.classList = 'list'
   cityUl.append(cityName)
   cityName.addEventListener('click', () => renderNetwork(network))
 }
+
+// refresh.addEventListener('click', () => renderCities(network))
 
 function renderNetwork(network) {
   let child = cityUl.lastElementChild
@@ -26,45 +26,68 @@ function renderNetwork(network) {
     cityUl.removeChild(child)
     child = cityUl.lastElementChild
   }
-  cityName = document.createElement('li')
-  cityName.innerHTML = network.location.city
-  cityName.classList = 'list'
-  cityUl.append(cityName)
-  
+
   fetch (`https://api.citybik.es/v2/networks/${network.id}`)
   .then(res => res.json())
   .then(network => renderStations(network))
 }
 
-const stations = document.querySelector('#station-details')
+const networkDetails = document.querySelector('#network-details').firstElementChild
+// const company = document.querySelector('#network-details').lastElementChild
 const freeBikes = document.querySelector('#free-bikes')
 const availableSlots = document.querySelector('#empty-slots')
 
 
 function renderStations(network) {
-  let stationInfo = document.createElement('ul')
+  let stationInfo = document.createElement('div')
   cityUl.append(stationInfo)
   
   let networkName = document.createElement('p')
   networkName.innerHTML = network["network"].name
   networkName.classList ='center'
-  stations.append(networkName)
+  networkDetails.append(networkName)
   
+  let nextButton = document.createElement('button')
+  nextButton.innerHTML = "Next"
+
+  let networkStations = network['network'].stations
+
+
+  let start = 0
+  let end = 30
   
-  let destinationStation = network['network'].stations
-  for(station of destinationStation) {
-    let stationName = document.createElement('li')
-    stationName.innerHTML = station.name
-    let emptySlots = document.createElement('li')
-    emptySlots.innerHTML = `Empty Slots: ${station.empty_slots}`
-    let availableBikes = document.createElement('li')
-    availableBikes.innerHTML = `Available Bikes: ${station.free_bikes}`
-    // let acceptedPayment = document.createElement('li')
-    // acceptedPayment.innerHTML = station.extra.payment
+  networkDetails.append(nextButton)
+    
+    for (start; start<end; start++) {
+      let stationName = document.createElement('h3')
+      stationName.innerHTML = networkStations[start].name
+      let emptySlots = document.createElement('p')
+      emptySlots.innerHTML = `Empty Slots: ${networkStations[start].empty_slots}`
+      let availableBikes = document.createElement('p')
+      availableBikes.innerHTML = `Available Bikes: ${networkStations[start].free_bikes}`
+      let line = document.createElement('hr')
 
-    stationInfo.append(stationName, emptySlots, availableBikes)
-  }
+      stationInfo.append(stationName, emptySlots, availableBikes, line)
+    }
+  nextButton.addEventListener('click', function(){
+  
+  start = end
+  end += 30
 
+  stationInfo.innerHTML = " "
+  networkDetails.append(nextButton)
+  for(start; start<end; start++) {
+        let stationName = document.createElement('h3')
+        stationName.innerHTML = networkStations[start].name
+        let emptySlots = document.createElement('p')
+        emptySlots.innerHTML = `Empty Slots: ${networkStations[start].empty_slots}`
+        let availableBikes = document.createElement('p')
+        availableBikes.innerHTML = `Available Bikes: ${networkStations[start].free_bikes}`
+        let line = document.createElement('hr')
+            
+        stationInfo.append(stationName, emptySlots, availableBikes, line)
+      }
+    })
 }
 
 searchSubmit.addEventListener('submit', (e) => {
@@ -77,76 +100,16 @@ searchSubmit.addEventListener('submit', (e) => {
   }
     
   fetch('https://api.citybik.es/v2/networks')
-  .then (res => res.json())
-  .then (data => {
-      let networkData = data["networks"]
-      networkData.filter (network => matchCities(network))
+    .then (res => res.json())
+    .then (data => {
+        let networkData = data["networks"]
+        networkData.filter (network => matchCities(network))
     
-
     function matchCities(network) {
       const searchInput = document.querySelector('#form')[0].value
       if(searchInput === network.location.city) {
         renderCities(network)
-        return networkID = network.id
       } 
     } 
   })
 })
-
-
-
-    // fetch(`https://api.citybik.es/v2/networks/${networkID}`)
-    //   .then(res => res.json())
-    //   .then(data => matchName(data))
-
-    //   function matchName (network) {
-    //     console.log(network)
-        // let networkData = data["networks"]
-        // if("New York City" === networkData.location.city)
-        // console.log(network.company)
-  //     }
-  // )
-
-
-
-
-  // function matchName (network) {
-  //   let networkData = data["networks"]
-  //   if("New York City" === networkData.location.city)
-  //   console.log(network.company)
-  // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// //@city
-//     fetch('https://api.citybik.es/v2/networks')
-//   .then (res => res.json())
-//   .then (data => {
-//     let networkData = data["networks"]
-//     networkData.forEach(network => console.log(network.location.city))
-//     })
-
-// //@network
-//     fetch('https://api.citybik.es/v2/networks')
-//   .then (res => res.json())
-//   .then (data => {
-//     let networkData = data["networks"]
-//     networkData.forEach(network => console.log(network.location))
-//     })
-
-// // function getAllCities(city){
-// //   cities = document.
-// // }

@@ -10,48 +10,45 @@
     <title>Project: Phase 1</title>
   </head>
 
-  <body>
-    <h1>City Bike Finder</h1>
+  <body id="body">
+    <h1 class="center">City Bike Finder</h1>
     
     <div>
       <img src="images/map-image.png" class="center" alt="Global map pinpointing bike access points">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </div>
 
-    <div class ="row">
-      <div class="column1 center" id="station-details">
-        <h1 class="center">Station Name</h1>
-      </div>
-      <div class="column2 center" id="free-bikes">
-        <h3></h3>
-      </div>
-      <div class="column3 center" id="empty-slots">
-        <h3></h3>
-      </div>
-        
-        
-      
-    </div>
-    
     <form id="form" role="search">
       <input type="search" id="query" name="q"
       placeholder="Type a city, ie. New York, NY"
       aria-label="Search through site content">
       <button>Search</button>
     </form>
+    
+    <br>
+    
+    <div class ="row">
+      <div class="column1 center" id="network-details">
+        <h3 class="center">Network Name:</h3>
+        <!-- <h3 class="center">Company Name:</h3> -->
+      </div>
+    </div>
+    
+    <!-- <button id="refresh">Refresh List</button> -->
 
+    
     <div class="container">
       <ul id="city-Ul">
     </div>
 
 
     </ul>
-    <footer>
+    <!-- <footer>
       <ul id="footer">
         This page is made possible by the <a href ="https://api.citybik.es/v2/#net_resource">CityBikes API Documentation</a><br>
         <a href ="https://citybik.es/">Citybikes</a> supports more than 400 cities and the Citybikes API is the most widely used dataset for building bike sharing transportation projects
       </ul>
-    </footer>
+    </footer> -->
 
   </body>
   
