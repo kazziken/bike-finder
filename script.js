@@ -21,43 +21,42 @@ function renderCities (network) {
 // refresh.addEventListener('click', () => renderCities(network))
 
 function renderNetwork(network) {
-  let child = cityUl.lastElementChild
-  while (child) {
-    cityUl.removeChild(child)
-    child = cityUl.lastElementChild
-  }
+  cityUl.innerHTML = ''
 
   fetch (`https://api.citybik.es/v2/networks/${network.id}`)
   .then(res => res.json())
   .then(network => renderStations(network))
 }
 
-const networkDetails = document.querySelector('#network-details').firstElementChild
-// const company = document.querySelector('#network-details').lastElementChild
+const networkDetails = document.querySelector('#network-details')
+const count = document.querySelector('#station-count')
+const company = document.querySelector('#company-name')
 const freeBikes = document.querySelector('#free-bikes')
+const networkName = document.querySelector('#network-name')
 const availableSlots = document.querySelector('#empty-slots')
+let line = document.createElement('hr')
 
 
 function renderStations(network) {
   let stationInfo = document.createElement('div')
   cityUl.append(stationInfo)
   
-  let networkName = document.createElement('p')
-  networkName.innerHTML = network["network"].name
-  networkName.classList ='center'
-  networkDetails.append(networkName)
+  let networkStations = network['network'].stations
   
   let nextButton = document.createElement('button')
   nextButton.innerHTML = "Next"
+  
+  networkDetails.innerHTML = ' '
+  networkName.innerHTML = `Network Name: ${network["network"].name}`
+  count.innerHTML = `Number of Stations: ${(network["network"].stations).length}`
+  company.innerHTML = `Company Name: ${network["network"].company}`
 
-  let networkStations = network['network'].stations
+  networkDetails.append(networkName, company, count, nextButton, line)
 
 
   let start = 0
   let end = 30
-  
-  networkDetails.append(nextButton)
-    
+      
     for (start; start<end; start++) {
       let stationName = document.createElement('h3')
       stationName.innerHTML = networkStations[start].name
@@ -83,7 +82,6 @@ function renderStations(network) {
         emptySlots.innerHTML = `Empty Slots: ${networkStations[start].empty_slots}`
         let availableBikes = document.createElement('p')
         availableBikes.innerHTML = `Available Bikes: ${networkStations[start].free_bikes}`
-        let line = document.createElement('hr')
             
         stationInfo.append(stationName, emptySlots, availableBikes, line)
       }
