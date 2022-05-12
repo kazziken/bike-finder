@@ -1,14 +1,16 @@
-let cityUl = document.querySelector('#city-Ul')
-const searchSubmit = document.querySelector ('#form')
-// const refresh = document.querySelector('#refresh')
-const body = document.querySelector('body')
-
 fetch('https://api.citybik.es/v2/networks')
   .then (res => res.json())
   .then (data => {
     let networkData = data["networks"]
     networkData.forEach (network => renderCities(network))
-  })
+})
+
+let cityUl = document.querySelector('#city-Ul')
+const searchSubmit = document.querySelector ('#form')
+const refresh = document.querySelector('#refresh')
+const body = document.querySelector('body')
+const toggle = document.querySelector('#toggle-mode')
+const footer = document.querySelector('#footer')
 
 function renderCities (network) {
   cityName = document.createElement('li')
@@ -18,7 +20,30 @@ function renderCities (network) {
   cityName.addEventListener('click', () => renderNetwork(network))
 }
 
-// refresh.addEventListener('click', () => renderCities(network))
+refresh.addEventListener('click', () => {
+  cityUl.innerHTML = ' '
+  networkDetails.innerHTML = ' '
+  fetch('https://api.citybik.es/v2/networks')
+  .then (res => res.json())
+  .then (data => {
+    let networkData = data["networks"]
+    networkData.forEach (network => renderCities(network))
+  })
+})
+
+toggle.addEventListener('click', toggleMode)
+
+function toggleMode () {
+  body.classList.toggle('darkmode')
+  body.firstElementChild.classList.toggle('togglemode')
+  networkDetails.classList.toggle('togglemode')
+  line.classList.toggle('linemode')
+  networkName.classList.toggle('togglemode')
+  footer.classList.toggle('darkmode')
+  company.classList.toggle('togglemode')
+  count.classList.toggle('togglemode')
+}
+
 
 function renderNetwork(network) {
   cityUl.innerHTML = ''
@@ -82,7 +107,8 @@ function renderStations(network) {
         emptySlots.innerHTML = `Empty Slots: ${networkStations[start].empty_slots}`
         let availableBikes = document.createElement('p')
         availableBikes.innerHTML = `Available Bikes: ${networkStations[start].free_bikes}`
-            
+        let line = document.createElement('hr')
+
         stationInfo.append(stationName, emptySlots, availableBikes, line)
       }
     })
@@ -91,10 +117,14 @@ function renderStations(network) {
 searchSubmit.addEventListener('submit', (e) => {
   e.preventDefault()
   console.log('this is in search')
-  let child = cityUl.lastElementChild
-  while (child) {
-    cityUl.removeChild(child)
-    child = cityUl.lastElementChild
+  if (e.target.firstElementChild.value === '') {
+    alert('Please enter a city name')
+  } else {
+    let child = cityUl.lastElementChild
+    while (child) {
+      cityUl.removeChild(child)
+      child = cityUl.lastElementChild
+    }
   }
     
   fetch('https://api.citybik.es/v2/networks')
@@ -106,7 +136,7 @@ searchSubmit.addEventListener('submit', (e) => {
     function matchCities(network) {
       const searchInput = document.querySelector('#form')[0].value
       if(searchInput === network.location.city) {
-        renderCities(network)
+        renderNetwork(network)
       } 
     } 
   })

@@ -3,40 +3,39 @@
 } */
 
 body {
-  background: rgb(180, 215, 233);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #000000;
+  font-family: Verdana, Tahoma;
   font-size: 14px;
-  /* background-image: url('images/ADBC_Bikeshare_bike_station.jpeg');
-  background-repeat: no-repeat;
-  background-size: 150%; */
-/*not sure if this color default will work yet
-  color: var(--color-fg-default);
-  background-color: var(--color-canvas-default);
-
-  --color-fg-default: #c9d1d9;
-  --color-canvas-default: #0d1117;
-end here */
+  color: #fdfffc;
 }
 
 
 .center {
   display: block;
+  position: auto;
+  
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  width: 85%;
+  background-color: #011627;
+  height:auto;
+  width: 100%;
 }
 
 #footer{
-  position: fixed;
+  position: relative;
   bottom:0;
   left:0;
-  background-color: whitesmoke;
+  background-color: #000000;
+  color: #fdfffc;
  }
 
 
  form {
-  background-color: whitesmoke;
+  background-color: #000000;
+  color: #fdfffc;
+  font-family: Verdana, Tahoma;
+  font-size: 14px;
   width: 0px;
   height: 44px;
   border-radius: 5px;
@@ -45,13 +44,30 @@ end here */
   align-items: center;
 }
 
+.darkmode {
+  background-color: #fdfffc;
+  color: #011627;
+}
+
+.togglemode{
+  color: #ff9f1c;
+  background-color: #c3f6f1;
+}
+
+.linemode {
+  background-color: #ff9f1c;
+  color: #ff9f1c;
+}
+
 .column1 {
+  font-family: Verdana, Tahoma;
+  font-size: 14px;
   float: left;
   text-align: center;
   position: auto;
   background-color: transparent;
   width: 100%;
-  padding: 1px;
+  padding: auto;
   margin-left: auto;
   margin-right: auto;
   height: auto; /* Should be removed. Only for demonstration */
@@ -70,6 +86,8 @@ end here */
   }
 }
 .container1 {
+  font-family: Verdana, Tahoma;
+  font-size: 14px;
   position: relative;
   margin: 0 auto;
   width: auto;
@@ -90,6 +108,8 @@ end here */
 
 
 .list {
+  font-family: Verdana, Tahoma;
+  font-size: 14px;
   display: block;
   text-align: left;
   padding: 10px 3;
