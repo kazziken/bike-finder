@@ -18,6 +18,11 @@ function renderCities (network) {
   cityName.classList = 'list'
   cityUl.append(cityName)
   cityName.addEventListener('click', () => renderNetwork(network))
+  cityName.addEventListener('mouseover', mouse)
+}
+
+function mouse(e) {
+  e.target.classList.toggle('mouse')
 }
 
 refresh.addEventListener('click', () => {
@@ -39,7 +44,7 @@ function toggleMode () {
   networkDetails.classList.toggle('togglemode')
   line.classList.toggle('linemode')
   networkName.classList.toggle('togglemode')
-  footer.classList.toggle('darkmode')
+  footer.classList.toggle('togglemode')
   company.classList.toggle('togglemode')
   count.classList.toggle('togglemode')
 }
@@ -116,7 +121,6 @@ function renderStations(network) {
 
 searchSubmit.addEventListener('submit', (e) => {
   e.preventDefault()
-  console.log('this is in search')
   if (e.target.firstElementChild.value === '') {
     alert('Please enter a city name')
   } else {
