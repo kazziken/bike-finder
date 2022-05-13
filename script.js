@@ -46,6 +46,7 @@ function toggleMode () {
   networkName.classList.toggle('togglemode')
   footer.classList.toggle('togglemode')
   company.classList.toggle('togglemode')
+  cityNetwork.classList.toggle('togglemode')
   count.classList.toggle('togglemode')
 }
 
@@ -62,6 +63,7 @@ const networkDetails = document.querySelector('#network-details')
 const count = document.querySelector('#station-count')
 const company = document.querySelector('#company-name')
 const freeBikes = document.querySelector('#free-bikes')
+const cityNetwork = document.querySelector('#city-name')
 const networkName = document.querySelector('#network-name')
 const availableSlots = document.querySelector('#empty-slots')
 let line = document.createElement('hr')
@@ -74,20 +76,64 @@ function renderStations(network) {
   let networkStations = network['network'].stations
   
   let nextButton = document.createElement('button')
+  let prevButton = document.createElement('button')
   nextButton.innerHTML = "Next"
+  prevButton.innerHTML = "Prev"
   
   networkDetails.innerHTML = ' '
+  cityNetwork.innerHTML = `City: ${network['network'].location.city}`
   networkName.innerHTML = `Network Name: ${network["network"].name}`
   count.innerHTML = `Number of Stations: ${(network["network"].stations).length}`
   company.innerHTML = `Company Name: ${network["network"].company}`
 
-  networkDetails.append(networkName, company, count, nextButton, line)
+  networkDetails.append(cityNetwork, networkName, company, count, line, prevButton, nextButton)
 
 
   let start = 0
   let end = 30
+
+  for (start; start<end; start++) {
+    let stationName = document.createElement('h3')
+    stationName.innerHTML = networkStations[start].name
+    let emptySlots = document.createElement('p')
+    emptySlots.innerHTML = `Empty Slots: ${networkStations[start].empty_slots}`
+    let availableBikes = document.createElement('p')
+    availableBikes.innerHTML = `Available Bikes: ${networkStations[start].free_bikes}`
+    let line = document.createElement('hr')
+
+    stationInfo.append(stationName, emptySlots, availableBikes, line)
+  }
+
+  start = 0
+  
+  nextButton.addEventListener('click', function() {
+    start = end
+    end += 30
+
+    stationInfo.innerHTML = " "
+
+    for(start; start<end; start++) {
+      let stationName = document.createElement('h3')
+      stationName.innerHTML = networkStations[start].name
+      let emptySlots = document.createElement('p')
+      emptySlots.innerHTML = `Empty Slots: ${networkStations[start].empty_slots}`
+      let availableBikes = document.createElement('p')
+      availableBikes.innerHTML = `Available Bikes: ${networkStations[start].free_bikes}`
+      let line = document.createElement('hr')
+
+      stationInfo.append(stationName, emptySlots, availableBikes, line)
       
-    for (start; start<end; start++) {
+    }
+    start -=30
+  })
+
+  prevButton.addEventListener('click', function () {
+    end = start
+    start -= 30
+
+    stationInfo.innerHTML = " "
+    
+    for(start; start<end; start++) {
       let stationName = document.createElement('h3')
       stationName.innerHTML = networkStations[start].name
       let emptySlots = document.createElement('p')
@@ -98,25 +144,8 @@ function renderStations(network) {
 
       stationInfo.append(stationName, emptySlots, availableBikes, line)
     }
-  nextButton.addEventListener('click', function(){
-  
-  start = end
-  end += 30
-
-  stationInfo.innerHTML = " "
-  networkDetails.append(nextButton)
-  for(start; start<end; start++) {
-        let stationName = document.createElement('h3')
-        stationName.innerHTML = networkStations[start].name
-        let emptySlots = document.createElement('p')
-        emptySlots.innerHTML = `Empty Slots: ${networkStations[start].empty_slots}`
-        let availableBikes = document.createElement('p')
-        availableBikes.innerHTML = `Available Bikes: ${networkStations[start].free_bikes}`
-        let line = document.createElement('hr')
-
-        stationInfo.append(stationName, emptySlots, availableBikes, line)
-      }
-    })
+    start -=30
+  })
 }
 
 searchSubmit.addEventListener('submit', (e) => {
