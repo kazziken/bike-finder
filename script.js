@@ -76,9 +76,11 @@ function renderStations(network) {
   let networkStations = network['network'].stations
   
   let nextButton = document.createElement('button')
+  nextButton.style.backgroundColor = '#85c1e9'
+
   let prevButton = document.createElement('button')
-  nextButton.innerHTML = "Next"
-  prevButton.innerHTML = "Prev"
+  nextButton.innerHTML = "Next >"
+  prevButton.innerHTML = "< Prev"
   
   networkDetails.innerHTML = ' '
   cityNetwork.innerHTML = `City: ${network['network'].location.city}`
@@ -105,7 +107,7 @@ function renderStations(network) {
   }
 
   start = 0
-  
+
   nextButton.addEventListener('click', function() {
     start = end
     end += 30
@@ -159,12 +161,12 @@ searchSubmit.addEventListener('submit', (e) => {
       child = cityUl.lastElementChild
     }
   }
-    
+  
   fetch('https://api.citybik.es/v2/networks')
-    .then (res => res.json())
-    .then (data => {
-        let networkData = data["networks"]
-        networkData.filter (network => matchCities(network))
+  .then (res => res.json())
+  .then (data => {
+    let networkData = data["networks"]
+    networkData.filter (network => matchCities(network))
     
     function matchCities(network) {
       const searchInput = document.querySelector('#form')[0].value
